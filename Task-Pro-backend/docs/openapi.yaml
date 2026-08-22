@@ -1,0 +1,38 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: TaskPro API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: >
+    REST API for the TaskPro task management application
+tags:
+  - name: Auth
+    description: Authentication and user profile.
+  - name: Boards
+    description: Boards management.
+  - name: Columns
+    description: Columns management.
+  - name: Cards
+    description: Cards management.
+  - name: Help
+    description: Need help requests.
+servers:
+  - url: http://localhost:3000/api
+  - url: https://example.com/api/v1
+paths:
+  /auth/register:
+    get:
+      $ref: ../swagger/paths/students/get.yaml
+
+    post:
+      $ref: ../swagger/paths/students/post.yaml
+  /students/{id}:
+    get:
+      $ref: ../swagger/paths/students/{id}/get.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

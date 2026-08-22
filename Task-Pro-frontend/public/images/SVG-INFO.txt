@@ -1,0 +1,131 @@
+1. Genel & Logo Simgeleri
+icon-x-close: Kapatma / Çarpı (X) ikonu.
+
+icon-logo-path1: Logo arka planı / Yuvarlatılmış kare (Kutu).
+
+icon-logo-path2: Logo içindeki şimşek / Yıldırım deseni.
+
+icon-userAvatarDefault: Varsayılan kullanıcı avatarı (Kare içinde profil silüeti).
+
+2. Koyu Tema (Dark Theme)
+icon-active-pop-up-dark: Aktif pop-up / Dairesel sağa ok ikonu.
+
+icon-arrow-circle-dark: Çember içinde sağa ok ikonu.
+
+icon-bell-dark: Bildirim zili ikonu.
+
+icon-colors-dark: Renk / Tema değiştirme ikonu (3 kesişen daire).
+
+icon-container-dark: Konteyner / Izgara küp ikonu.
+
+icon-filter-dark: Filtreleme (Huni) ikonu.
+
+icon-hexagon-dark: Altıgen (Hexagon) ikonu.
+
+icon-lightning-dark: Şimşek / Hızlı işlem ikonu.
+
+icon-loading-dark: Yükleniyor / Dairesel döngü ikonu.
+
+icon-login-active-dark: Aktif giriş yap / Sağa yönlendiren kapı ve ok ikonu.
+
+icon-login-normal-dark: Normal durum giriş yap ikonu.
+
+icon-normal-pop-up-dark: Normal durum pop-up / Çember içi ok ikonu.
+
+icon-pencil-dark: Düzenleme / Kalem ikonu.
+
+icon-plus-avatar-dark: Avatar ekleme / Kalın artı (+) ikonu.
+
+icon-plus-create-dark: Yeni oluştur / Artı (+) ikonu.
+
+icon-project-dark: Proje / 4'lü pano düzeni ikonu.
+
+icon-puzzle-piece-dark: Yapboz / Puzzle parçası ikonu.
+
+icon-star-dark: Yıldız ikonu.
+
+icon-trash-dark: Silme / Çöp kutusu ikonu.
+
+3. Açık Tema (Light Theme)
+icon-active-pop-up-light: Aktif pop-up / Sağa ok ikonu.
+
+icon-arrow-circle-light: Çember içinde ok ikonu.
+
+icon-bell-light: Bildirim zili ikonu.
+
+icon-colors-light: Renk / Tema değiştirme ikonu.
+
+icon-container-light: Konteyner / Küp ikonu.
+
+icon-filter-light: Filtre huni ikonu.
+
+icon-hexagon-light: Altıgen ikonu.
+
+icon-lightning-light: Şimşek ikonu.
+
+icon-loading-light: Yükleniyor ikonu.
+
+icon-login-active-light: Aktif giriş ikonu.
+
+icon-login-normal-light: Normal giriş ikonu.
+
+icon-normal-pop-up-light: Pop-up ok ikonu.
+
+icon-pencil-light: Kalem / Düzenle ikonu.
+
+icon-plus-avatar-light: Avatar ekle artı (+) ikonu.
+
+icon-plus-black-light: Siyah artı (+) ikonu.
+
+icon-plus-white-create-light: Beyaz oluşturma artı (+) ikonu.
+
+icon-project-light: Proje / Pano ikonu.
+
+icon-puzzle-piece-light: Yapboz parçası ikonu.
+
+icon-star-light: Yıldız ikonu.
+
+icon-trash-light: Çöp kutusu ikonu.
+
+4. Mor Tema (Violet Theme)
+icon-active-pop-up-violet: Aktif pop-up / Sağa ok ikonu.
+
+icon-arrow-circle-violet: Çember içinde ok ikonu.
+
+icon-bell-violet: Bildirim zili ikonu.
+
+icon-colors-violet: Renk / Tema ikonu.
+
+icon-container-violet: Konteyner / Izgara küp ikonu.
+
+icon-filter-violet: Filtre huni ikonu.
+
+icon-hexagon-violet: Altıgen ikonu.
+
+icon-icon-logo-violet: Mor zeminli şimşek logo ikonu.
+
+icon-lightning-violet: Şimşek ikonu.
+
+icon-loading-violet: Yükleniyor dairesel döngü ikonu.
+
+icon-login-active-violet: Aktif giriş yap ikonu.
+
+icon-login-normal-violet: Normal durum giriş yap ikonu.
+
+icon-normal-pop-up-violet: Pop-up ok ikonu.
+
+icon-pencil-violet: Kalem / Düzenle ikonu.
+
+icon-plus-avatar-violet: Avatar ekle kalın artı (+) ikonu.
+
+icon-plus-create-violet: Oluştur ince artı (+) ikonu.
+
+icon-plus-whith-violet: Beyaz artı (+) ikonu.
+
+icon-project-violet: Proje / 4'lü pano ikonu.
+
+icon-puzzle-piece-violet: Yapboz parçası ikonu.
+
+icon-star-violet: Yıldız ikonu.
+
+icon-trash-violet: Çöp kutusu ikonu.

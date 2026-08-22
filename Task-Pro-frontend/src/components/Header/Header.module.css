@@ -1,0 +1,153 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 16px 24px;
+  background-color: var(--bg-main);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-right: auto;
+  color: var(--text-primary);
+}
+
+.menuButton svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (min-width: 1024px) {
+  .menuButton {
+    display: none;
+  }
+}
+
+.themeDropdown {
+  position: relative;
+}
+
+.themeButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.themeButton:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.themeButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+.chevronIcon {
+  width: 12px;
+  height: 12px;
+  margin-left: 4px;
+}
+
+.themeMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 20;
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  min-width: 140px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-modal);
+  box-shadow: var(--shadow-card);
+}
+
+.themeOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+.themeOption svg {
+  width: 14px;
+  height: 14px;
+}
+
+.themeOption:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.themeOptionActive {
+  color: var(--accent);
+}
+
+.userButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease;
+}
+
+.userButton:hover {
+  background-color: var(--bg-secondary);
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--bg-input);
+  color: var(--text-muted);
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 480px) {
+  .userName {
+    display: none;
+  }
+}

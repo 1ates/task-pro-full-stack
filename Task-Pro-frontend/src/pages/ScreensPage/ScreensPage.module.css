@@ -1,0 +1,16 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hasBackground {
+  --text-primary: #ffffff;
+  --text-secondary: #e8e8e8;
+  --text-muted: #cfcfcf;
+  --border-color: rgba(255, 255, 255, 0.35);
+}

@@ -1,0 +1,70 @@
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  background: linear-gradient(180deg, #f3f4f6 0%, #ffffff 40%, #c7e4ba 100%);
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 40px 32px;
+  border-radius: var(--radius-lg);
+  background-color: #161616;
+
+  --bg-main: #161616;
+  --bg-input: #1f1f1f;
+  --text-primary: #ffffff;
+  --text-secondary: #c9c9c9;
+  --text-muted: #858d8d;
+  --border-color: #3a3a3a;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.logoIcon {
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+}
+
+.tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab {
+  padding-bottom: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.tabActive {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+}
+
+@media (min-width: 768px) {
+  .card {
+    max-width: 440px;
+    padding: 48px 40px;
+  }
+}

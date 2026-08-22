@@ -1,0 +1,314 @@
+.title {
+  margin: 0 0 24px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--accent);
+}
+
+.inputError {
+  border-color: var(--error);
+}
+
+.error {
+  font-size: 12px;
+  color: var(--error);
+}
+
+.label {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.swatchRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.swatch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  background-color: var(--bg-input);
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.swatch svg {
+  width: 16px;
+  height: 16px;
+}
+
+.swatchActive {
+  border-color: var(--accent);
+  color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.bgSwatch {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background-size: cover;
+  background-position: center;
+  transition: outline-color 0.2s ease;
+}
+
+.bgSwatchNone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-input);
+  color: var(--text-secondary);
+}
+
+.bgSwatchNone svg {
+  width: 14px;
+  height: 14px;
+}
+
+.bgSwatchActive {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.priorityRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.priorityOption {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  transition: outline-color 0.2s ease;
+}
+
+.priorityOption:hover {
+  outline: 2px solid var(--border-color);
+  outline-offset: 2px;
+}
+
+.priorityActive {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.priorityDot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent);
+  color: #161616;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.submit:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+}
+
+.submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.submitIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  background-color: #161616;
+  color: var(--accent);
+}
+
+.submitIcon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.deleteButton {
+  margin-top: 8px;
+  padding: 8px;
+  border: none;
+  background: none;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  color: var(--error);
+  transition: opacity 0.2s ease;
+}
+
+.deleteButton:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+.field :global(.react-datepicker-wrapper) {
+  width: 100%;
+}
+
+.field :global(.react-datepicker__input-container input) {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.field :global(.react-datepicker__input-container input:focus) {
+  border-color: var(--accent);
+}
+
+:global(.react-datepicker-popper) {
+  z-index: 50;
+}
+
+:global(.react-datepicker) {
+  font-family: var(--font-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-modal) !important;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+:global(.react-datepicker__triangle) {
+  display: none;
+}
+
+:global(.react-datepicker__header) {
+  padding-top: 12px;
+  background-color: var(--bg-modal) !important;
+  border-bottom: 1px solid var(--border-color);
+}
+
+:global(.react-datepicker__current-month) {
+  color: var(--text-primary) !important;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+:global(.react-datepicker__navigation-icon::before) {
+  border-color: var(--text-secondary) !important;
+}
+
+:global(.react-datepicker__navigation:hover .react-datepicker__navigation-icon::before) {
+  border-color: var(--accent) !important;
+}
+
+:global(.react-datepicker__day-names) {
+  margin-top: 8px;
+}
+
+:global(.react-datepicker__day-name) {
+  color: var(--text-muted) !important;
+  font-size: 12px;
+  width: 32px;
+  line-height: 32px;
+}
+
+:global(.react-datepicker__month) {
+  margin: 8px;
+}
+
+:global(.react-datepicker__day) {
+  color: var(--text-secondary) !important;
+  width: 32px;
+  line-height: 32px;
+  border-radius: 50%;
+  font-size: 13px;
+}
+
+:global(.react-datepicker__day:hover) {
+  background-color: var(--bg-secondary) !important;
+  border-radius: 50%;
+}
+
+:global(.react-datepicker__day--outside-month) {
+  color: var(--text-muted) !important;
+}
+
+:global(.react-datepicker__day--selected),
+:global(.react-datepicker__day--keyboard-selected),
+:global(.react-datepicker__day--today) {
+  background-color: var(--accent) !important;
+  color: #161616 !important;
+  font-weight: 600;
+}
+
+:global(.react-datepicker__day--disabled) {
+  color: var(--text-muted) !important;
+  opacity: 0.4;
+}
