@@ -1,6 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tasksReducer from "./tasks/slice.js";
 import authReducer from "./auth/slice.js";
+import boardsReducer from "./boards/slice.js";
+import columnsReducer from "./columns/slice.js";
+import cardsReducer from "./cards/slice.js";
+import filtersReducer from "./filters/slice.js";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import storageModule from "redux-persist/lib/storage";
 
@@ -15,7 +18,10 @@ const authPersistConfig = {
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    tasks: tasksReducer,
+    boards: boardsReducer,
+    columns: columnsReducer,
+    cards: cardsReducer,
+    filters: filtersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

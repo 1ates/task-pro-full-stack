@@ -1,32 +1,35 @@
 .main {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
-  padding: 24px;
-  height: 100%;
+  gap: 18px;
+  padding: 14px 20px;
+  height: calc(100vh - 120px);
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .addColumnButton {
-  --text-primary: var(--modal-text-primary);
-
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   flex-shrink: 0;
-  width: 280px;
-  padding: 8px;
-  border-radius: var(--radius-md);
-  border: none;
+  width: 335px;
+  height: 56px;
+  border-radius: 8px;
+  border: 1.25px dashed var(--accent);
   background-color: var(--bg-main);
   font-size: 14px;
   font-weight: 500;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
-  transition: background-color 0.2s ease;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .addColumnButton:hover {
   background-color: var(--bg-secondary);
+  border-color: var(--accent-hover);
 }
 
 .addIcon {
@@ -34,14 +37,33 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  border-radius: var(--radius-sm);
-  background-color: var(--accent);
-  color: #161616;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: var(--text-primary);
+  color: var(--bg-main);
 }
 
 .addIcon svg {
   width: 14px;
   height: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    gap: 20px;
+    padding: 24px 32px;
+    height: calc(100vh - 160px);
+  }
+
+  .addColumnButton {
+    width: 334px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .main {
+    padding: 24px;
+    height: calc(100vh - 120px);
+  }
 }
