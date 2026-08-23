@@ -1,16 +1,10 @@
 .column {
-  --text-primary: var(--modal-text-primary);
-  --text-secondary: var(--modal-text-secondary);
-  --text-muted: var(--modal-text-muted);
-  --border-color: var(--modal-border);
-
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  width: 280px;
+  width: 335px;
   max-height: 100%;
-  border-radius: var(--radius-md);
-  background-color: var(--bg-secondary);
+  background-color: transparent;
   overflow: hidden;
 }
 
@@ -19,20 +13,23 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 14px 16px;
+  padding: 0 0 14px 0;
+  background-color: transparent;
 }
 
 .title {
   margin: 0;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
   word-break: break-word;
 }
 
 .headerActions {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   flex-shrink: 0;
 }
 
@@ -41,41 +38,64 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   color: var(--text-muted);
-  border-radius: var(--radius-sm);
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 0;
 }
 
 .editButton:hover {
-  color: var(--accent);
+  color: var(--text-primary);
 }
 
 .editButton svg {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
 }
 
 .cardList {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 0 16px 16px;
+  gap: 8px;
+  padding: 0 0 16px 0;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+/* Custom scrollbar styling for cardList */
+.cardList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cardList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cardList::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 12px;
 }
 
 .addCardButton {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  margin: 0 16px 16px;
-  padding: 8px;
-  border-radius: var(--radius-sm);
+  margin-top: auto;
+  padding: 14px;
+  border-radius: 8px;
   border: none;
   background-color: var(--accent);
   font-size: 14px;
   font-weight: 500;
+  letter-spacing: -0.02em;
   color: #161616;
+  cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
@@ -88,9 +108,9 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  border-radius: var(--radius-sm);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
   background-color: #161616;
   color: var(--accent);
 }
@@ -98,4 +118,10 @@
 .addIcon svg {
   width: 14px;
   height: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .column {
+    width: 334px;
+  }
 }
