@@ -1,85 +1,49 @@
-import { lazy, Suspense } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
+import { useEffect } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import AuthPage from "../../pages/AuthPage/AuthPage.jsx";
+import HomePage from "../../pages/HomePage/HomePage.jsx";
+import NotFoundPage from "../../pages/NotFound/NotFound.jsx";
 import PrivateRoute from "../../routers/PrivateRoute.jsx";
 import RestrictedRoute from "../../routers/RestrictedRoute.jsx";
+import { refreshUser } from "../../redux/auth/operations.js";
+import { selectIsRefreshing } from "../../redux/auth/selectors.js";
+import { Loader } from "../Loader/Loader.jsx";
 import "./App.module.css";
 
-const WelcomePage = lazy(() =>
-  import("../../pages/WelcomePage/WelcomePage.jsx")
-);
-const AuthPage = lazy(() => import("../../pages/AuthPage/AuthPage.jsx"));
-const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
-const ScreensPage = lazy(() =>
-  import("../../pages/ScreensPage/ScreensPage.jsx")
-);
-const NotFoundPage = lazy(() =>
-  import("../../pages/NotFound/NotFound.jsx")
-);
+// NOT: WelcomePage.jsx ve ScreensPage.jsx henuz bos (0 satir),
+// bu yuzden bu route'lar simdilik yorum satirinda birakildi.
+// O sayfalari yazan arkadas tamamlayinca yorumlari kaldirip
+// import satirlarini eklemesi yeterli.
+// import WelcomePage from "../../pages/WelcomePage/WelcomePage.jsx";
+// import ScreensPage from "../../pages/ScreensPage/ScreensPage.jsx";
 
 function App() {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  if (isRefreshing) return <Loader />;
 
   return (
-    <Suspense fallback={null}>
-      <Routes>
-        {/* Default route — redirect based on auth state */}
-        <Route
-          path="/"
-          element={
-            <Navigate to={isLoggedIn ? "/home" : "/welcome"} replace />
-          }
-        />
+    <Routes>
+      <Route path='/' element={<Navigate to='/welcome' replace />} />
 
-        {/* Public: Welcome */}
-        <Route
-          path="/welcome"
-          element={
-            <RestrictedRoute
-              component={<WelcomePage />}
-              redirectTo="/home"
-            />
-          }
-        />
+      {/* TODO: WelcomePage hazir olunca asagidaki satiri degistir */}
+      <Route path='/welcome' element={<Navigate to='/auth/login' replace />} />
 
-        {/* Public: Auth (login / register) */}
-        <Route
-          path="/auth/:id"
-          element={
-            <RestrictedRoute
-              component={<AuthPage />}
-              redirectTo="/home"
-            />
-          }
-        />
+      <Route path='/auth/:id' element={<RestrictedRoute component={<AuthPage />} />} />
 
-        {/* Private: Home (dashboard) */}
-        <Route
-          path="/home"
-          element={
-            <PrivateRoute
-              component={<HomePage />}
-              redirectTo="/welcome"
-            />
-          }
-        />
+      <Route path='/home' element={<PrivateRoute component={<HomePage />} />}>
+        {/* TODO: ScreensPage hazir olunca nested route olarak eklenecek */}
+        {/* <Route path=':boardId' element={<ScreensPage />} /> */}
+      </Route>
 
-        {/* Private: Board screens */}
-        <Route
-          path="/home/:boardId"
-          element={
-            <PrivateRoute
-              component={<ScreensPage />}
-              redirectTo="/welcome"
-            />
-          }
-        />
-
-        {/* 404 */}
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Suspense>
+      <Route path='*' element={<NotFoundPage />} />
+    </Routes>
   );
 }
 

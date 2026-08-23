@@ -1,36 +1,49 @@
-import { useParams, NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import clsx from "clsx";
+import { Icon } from "../../components/Icon/Icon.jsx";
+import { LoginForm } from "../../components/LoginForm/LoginForm.jsx";
+import { RegisterForm } from "../../components/RegisterForm/RegisterForm.jsx";
 import css from "./AuthPage.module.css";
-import LoginForm from "../../components/LoginForm/LoginForm.jsx";
-import RegisterForm from "../../components/RegisterForm/RegisterForm.jsx";
 
 const AuthPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  // /auth altinda gecersiz bir id gelirse (ornegin /auth/xyz) login'e yonlendir
+  useEffect(() => {
+    if (id !== "login" && id !== "register") {
+      navigate("/auth/login", { replace: true });
+    }
+  }, [id, navigate]);
+
   const isLogin = id === "login";
 
   return (
     <div className={css.page}>
       <div className={css.card}>
-        {/* Tabs */}
-        <nav className={css.tabs}>
-          <NavLink
-            to="/auth/register"
-            className={({ isActive }) =>
-              `${css.tab} ${isActive ? css.tabActive : ""}`
-            }
-          >
-            Registration
-          </NavLink>
-          <NavLink
-            to="/auth/login"
-            className={({ isActive }) =>
-              `${css.tab} ${isActive ? css.tabActive : ""}`
-            }
+        <div className={css.logo}>
+          <Icon name='icon-icon-logo-violet' className={css.logoIcon} />
+          <span>Task Pro</span>
+        </div>
+
+        <div className={css.tabs}>
+          <button
+            type='button'
+            className={clsx(css.tab, isLogin && css.tabActive)}
+            onClick={() => navigate("/auth/login")}
           >
             Log In
-          </NavLink>
-        </nav>
+          </button>
+          <button
+            type='button'
+            className={clsx(css.tab, !isLogin && css.tabActive)}
+            onClick={() => navigate("/auth/register")}
+          >
+            Registration
+          </button>
+        </div>
 
-        {/* Form */}
         {isLogin ? <LoginForm /> : <RegisterForm />}
       </div>
     </div>

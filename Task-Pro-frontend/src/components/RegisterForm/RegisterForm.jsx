@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import clsx from "clsx";
 import { registerSchema } from "../../schemas/validationSchemas.js";
-import { register as registerUser } from "../../redux/auth/operations.js";
+import { register as registerUser, login } from "../../redux/auth/operations.js";
 import { selectAuthLoading } from "../../redux/auth/selectors.js";
 import { PasswordField } from "../PasswordField/PasswordField.jsx";
 import css from "../Public.module.css";
@@ -27,7 +27,16 @@ export const RegisterForm = () => {
   const onSubmit = async (values) => {
     const result = await dispatch(registerUser(values));
     if (registerUser.fulfilled.match(result)) {
-      navigate("/home");
+      // Backend /register endpointi accessToken donmuyor,
+      // bu yuzden ayni bilgilerle otomatik login tetikliyoruz.
+      const loginResult = await dispatch(
+        login({ email: values.email, password: values.password }),
+      );
+      if (login.fulfilled.match(loginResult)) {
+        navigate("/home");
+      } else {
+        toast.error(loginResult.payload || "Auto login failed, please log in manually");
+      }
     } else {
       toast.error(result.payload || "Registration failed");
     }
@@ -63,5 +72,3 @@ export const RegisterForm = () => {
     </form>
   );
 };
-
-export default RegisterForm;

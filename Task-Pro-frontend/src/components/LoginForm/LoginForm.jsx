@@ -10,7 +10,7 @@ import { selectAuthLoading } from "../../redux/auth/selectors.js";
 import { PasswordField } from "../PasswordField/PasswordField.jsx";
 import css from "../Public.module.css";
 
-const LoginForm = () => {
+export const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLoading = useSelector(selectAuthLoading);
@@ -48,10 +48,8 @@ const LoginForm = () => {
       <PasswordField register={register} name='password' error={errors.password} placeholder='Password' />
 
       <button type='submit' className={css.submit} disabled={isLoading}>
-        Log In
+        Log In Now
       </button>
     </form>
   );
 };
-
-export default LoginForm;

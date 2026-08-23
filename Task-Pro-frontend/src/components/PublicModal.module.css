@@ -127,41 +127,29 @@
 }
 
 .priorityOption {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 14px;
-  height: 14px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: none;
+  border: 1px solid var(--border-color);
   background-color: transparent;
-  cursor: pointer;
-  padding: 0;
-  position: relative;
+  transition: outline-color 0.2s ease;
 }
 
 .priorityOption:hover {
-  transform: scale(1.1);
+  outline: 2px solid var(--border-color);
+  outline-offset: 2px;
+}
+
+.priorityActive {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .priorityDot {
   display: block;
-  width: 14px;
-  height: 14px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  transition: transform 0.2s ease;
-}
-
-.priorityActive .priorityDot {
-  transform: scale(0.65);
-}
-
-.priorityActive::after {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  border: 1.5px solid currentColor;
 }
 
 .submit {
@@ -324,32 +312,3 @@
   color: var(--text-muted) !important;
   opacity: 0.4;
 }
-
-.datePickerButton {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--accent);
-  cursor: pointer;
-  outline: none;
-  transition: opacity 0.2s ease;
-}
-
-.datePickerButton:hover {
-  opacity: 0.85;
-}
-
-.chevronIcon {
-  width: 18px;
-  height: 18px;
-  color: var(--accent);
-  transform: rotate(90deg);
-  --color1: currentColor;
-}
-
