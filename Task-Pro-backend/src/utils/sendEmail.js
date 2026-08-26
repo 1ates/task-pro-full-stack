@@ -18,7 +18,7 @@ export const sendPasswordEmail = async (options) => {
 export const sendHelpEmail = async ({ email, comment }) => {
   await transporter.sendMail({
     from: env(SMTP.SMTP_USER),
-    to: env('MAIL_TO') || env('MAIL_USER'),
+    to: env(SMTP.MAIL_TO),
     replyTo: email,
     subject: 'TaskPro - Need help request',
     text: `From: ${email}\n\n${comment}`,

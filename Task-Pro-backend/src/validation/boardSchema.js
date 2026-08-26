@@ -6,7 +6,6 @@ export const createBoardSchema = Joi.object({
   }),
   icon: Joi.string().max(64),
   background: Joi.string().max(64).allow(null),
-  userId: Joi.string().required(),
 });
 
 export const updateBoardSchema = Joi.object({

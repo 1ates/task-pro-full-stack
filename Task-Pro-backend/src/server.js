@@ -28,14 +28,9 @@ export const startServer = () => {
     }),
   );
 
-  app.use((req, res, next) => {
-    console.log(`Time ${new Date().toLocaleString()}`);
-    next();
-  });
-
   app.get('/', (req, res) => {
     return res.json({
-      message: 'Wellcome to Task-Pro API!',
+      message: 'Welcome to Task-Pro API!',
     });
   });
 

@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { upload } from '../middlewares/upload.js';
+import { authenticate } from '../middlewares/authenticate.js';
+import { upload } from '../middlewares/multer.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
-import { authenticate } from '../middlewares/authenticate.js';
 import {
   loginUserSchema,
   loginWithGoogleOAuthSchema,
@@ -11,10 +11,10 @@ import {
   resetPasswordSchema,
   updateUserSchema,
   updateThemeSchema,
+  refreshSessionSchema,
 } from '../validation/userSchema.js';
 import {
-  getCurrentUserController,
-  getGoogleOAuthUrlController,
+  currentUserController,
   loginUserController,
   loginWithGoogleController,
   logoutUserController,
@@ -23,6 +23,8 @@ import {
   resetPasswordController,
   updateProfileController,
   updateThemeController,
+  getGoogleOAuthUrlController,
+  refreshSessionController,
 } from '../controllers/auth.js';
 
 const router = Router();
@@ -39,9 +41,15 @@ router.post(
   ctrlWrapper(loginUserController),
 );
 
+router.post(
+  '/refresh',
+  validateBody(refreshSessionSchema),
+  ctrlWrapper(refreshSessionController),
+);
+
 router.post('/logout', authenticate, ctrlWrapper(logoutUserController));
 
-router.get('/current', authenticate, ctrlWrapper(getCurrentUserController));
+router.get('/current', authenticate, ctrlWrapper(currentUserController));
 
 router.patch(
   '/me',
