@@ -180,7 +180,7 @@ export const updateProfile = async (userId, payload, avatar) => {
       env('ENABLE_CLOUDINARY') === 'true'
         ? await saveFileToCloudinary(avatar, 'taskpro/users')
         : await saveFileToUploadDir(avatar, 'avatar');
-    updateData.avatar = avatarUrl;
+    updateData.avatarURL = avatarUrl;
   }
 
   return await UsersCollection.findByIdAndUpdate(userId, updateData, {
@@ -234,7 +234,7 @@ export const requestResetToken = async (email) => {
 
   const html = template({
     name: user.name,
-    link: `${env('APP_DOMAIN')}/reset-password?token=${resetToken}`,
+    link: `${env('APP_DOMAIN', 'http://localhost:5173/task-pro')}/reset-password?token=${resetToken}`,
   });
 
   await sendPasswordEmail({

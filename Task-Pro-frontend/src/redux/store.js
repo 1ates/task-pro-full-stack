@@ -1,18 +1,27 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import authReducer from "./auth/slice.js";
 import boardsReducer from "./boards/slice.js";
 import columnsReducer from "./columns/slice.js";
 import cardsReducer from "./cards/slice.js";
 import filtersReducer from "./filters/slice.js";
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
-import storageModule from "redux-persist/lib/storage";
 
-const storage = storageModule.default ?? storageModule;
+const storage = {
+  getItem: (key) => Promise.resolve(localStorage.getItem(key)),
+  setItem: (key, value) => {
+    localStorage.setItem(key, value);
+    return Promise.resolve();
+  },
+  removeItem: (key) => {
+    localStorage.removeItem(key);
+    return Promise.resolve();
+  },
+};
 
 const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["token"],
+  whitelist: ["token", "refreshToken"],
 };
 
 const store = configureStore({
@@ -25,9 +34,12 @@ const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: { ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER] },
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
     }),
-  devTools: process.env.NODE_ENV === "development",
+
+  devTools: import.meta.env.DEV,
 });
 
 export const persistor = persistStore(store);

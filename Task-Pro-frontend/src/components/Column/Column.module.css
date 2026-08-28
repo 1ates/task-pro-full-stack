@@ -1,11 +1,20 @@
 .column {
+  --text-primary: var(--modal-text-primary);
+  --text-secondary: var(--modal-text-secondary);
+  --text-muted: var(--modal-text-muted);
+  --border-color: var(--modal-border);
+
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
-  width: 335px;
-  max-height: 100%;
-  background-color: transparent;
-  overflow: hidden;
+
+  flex: 0 0 280px;
+  width: 280px;
+  min-width: 280px;
+  min-height: 0;
+
+  border-radius: var(--radius-md);
+  background-color: var(--bg-secondary);
+  overflow: visible;
 }
 
 .header {
@@ -13,23 +22,20 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 0 0 14px 0;
-  background-color: transparent;
+  padding: 14px 16px;
 }
 
 .title {
   margin: 0;
   font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
+  font-weight: 600;
   word-break: break-word;
 }
 
 .headerActions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   flex-shrink: 0;
 }
 
@@ -38,64 +44,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   color: var(--text-muted);
-  border: none;
-  background: none;
-  cursor: pointer;
-  transition: color 0.2s ease;
-  padding: 0;
+  border-radius: var(--radius-sm);
 }
 
 .editButton:hover {
-  color: var(--text-primary);
+  color: var(--accent);
 }
 
 .editButton svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
 }
 
 .cardList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 0 0 16px 0;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-color) transparent;
-}
-
-/* Custom scrollbar styling for cardList */
-.cardList::-webkit-scrollbar {
-  width: 6px;
-}
-
-.cardList::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.cardList::-webkit-scrollbar-thumb {
-  background-color: var(--border-color);
-  border-radius: 12px;
+  gap: 12px;
+  padding: 0 16px 16px;
 }
 
 .addCardButton {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  margin-top: auto;
-  padding: 14px;
-  border-radius: 8px;
+  margin: 0 16px 16px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
   border: none;
   background-color: var(--accent);
   font-size: 14px;
   font-weight: 500;
-  letter-spacing: -0.02em;
   color: #161616;
-  cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
@@ -108,9 +90,9 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
   background-color: #161616;
   color: var(--accent);
 }
@@ -120,8 +102,54 @@
   height: 14px;
 }
 
-@media screen and (min-width: 768px) {
-  .column {
-    width: 334px;
-  }
+.deleteConfirm {
+  width: 100%;
+  max-width: 420px;
+  padding: 24px;
+}
+
+.deleteConfirm h3 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--modal-text-primary);
+}
+
+.deleteConfirm p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 14px;
+  color: var(--modal-text-secondary);
+}
+
+.deleteConfirm strong {
+  color: var(--modal-text-primary);
+}
+
+.deleteActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.cancelDelete,
+.confirmDelete {
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cancelDelete {
+  background: transparent;
+  color: var(--modal-text-primary);
+}
+
+.confirmDelete {
+  border-color: transparent;
+  background-color: var(--accent);
+  color: #fff;
 }

@@ -1,8 +1,11 @@
-import { useState, useRef, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 import { deleteCard, moveCard } from "../../redux/cards/operations.js";
 import { selectColumns } from "../../redux/columns/selectors.js";
+import Modal from "../Modal/Modal.jsx";
 import CardModal from "../CardModal/CardModal.jsx";
+import { Icon } from "../Icon/Icon.jsx";
 import css from "./Card.module.css";
 
 const PRIORITY_COLORS = {
@@ -19,164 +22,126 @@ const PRIORITY_LABELS = {
   high: "High",
 };
 
+const formatDate = (date) =>
+  new Date(date).toLocaleDateString("en-US", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+
+const isDueToday = (date) => {
+  const today = new Date();
+  const deadline = new Date(date);
+  return (
+    today.getFullYear() === deadline.getFullYear() &&
+    today.getMonth() === deadline.getMonth() &&
+    today.getDate() === deadline.getDate()
+  );
+};
+
 const Card = ({ card, columnId }) => {
   const dispatch = useDispatch();
   const columns = useSelector(selectColumns);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isMoveOpen, setIsMoveOpen] = useState(false);
   const moveRef = useRef(null);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
-  // Close move menu on outside click
   useEffect(() => {
-    if (!isMoveOpen) return;
-    const handleClick = (e) => {
-      if (moveRef.current && !moveRef.current.contains(e.target)) {
-        setIsMoveOpen(false);
-      }
+    if (!isMoveOpen) return undefined;
+    const handleClick = (event) => {
+      if (moveRef.current && !moveRef.current.contains(event.target)) setIsMoveOpen(false);
     };
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, [isMoveOpen]);
 
-  const handleDelete = () => {
-    dispatch(deleteCard(card._id));
+  const handleDelete = async () => {
+    const result = await dispatch(deleteCard(card._id));
+
+    if (deleteCard.fulfilled.match(result)) {
+      setIsDeleteOpen(false);
+    } else {
+      toast.error(result.payload || "Failed to delete card");
+    }
   };
 
-  const handleMove = (targetColumnId) => {
-    dispatch(moveCard({ cardId: card._id, targetColumnId }));
-    setIsMoveOpen(false);
+  const handleMove = async (targetColumnId) => {
+    const result = await dispatch(moveCard({ cardId: card._id, targetColumnId }));
+    if (moveCard.fulfilled.match(result)) setIsMoveOpen(false);
+    else toast.error(result.payload || "Failed to move card");
   };
 
-  // Check if deadline is today
-  const isDeadlineToday = (() => {
-    if (!card.deadline) return false;
-    const today = new Date();
-    const deadline = new Date(card.deadline);
-    return (
-      today.getFullYear() === deadline.getFullYear() &&
-      today.getMonth() === deadline.getMonth() &&
-      today.getDate() === deadline.getDate()
-    );
-  })();
-
-  const formattedDeadline = card.deadline
-    ? new Date(card.deadline).toLocaleDateString("en-US", {
-        month: "2-digit",
-        day: "2-digit",
-        year: "numeric",
-      })
-    : null;
-
+  const isDeadlineToday = card.deadline && isDueToday(card.deadline);
+  const formattedDeadline = card.deadline ? formatDate(card.deadline) : null;
   const priorityColor = PRIORITY_COLORS[card.priority] || PRIORITY_COLORS.without;
 
-  // Other columns to move to
-  const moveTargets = columns.filter((col) => col._id !== columnId);
+  const currentColumnId = String(columnId);
+
+  const moveTargets = columns.filter((column) => String(column._id) !== currentColumnId);
 
   return (
     <>
       <article className={css.card}>
-        {/* Priority color bar */}
-        <span
-          className={css.priorityBar}
-          style={{ backgroundColor: priorityColor }}
-          aria-hidden="true"
-        />
-
+        <span className={css.priorityBar} style={{ backgroundColor: priorityColor }} aria-hidden='true' />
         <h4 className={css.title}>{card.title}</h4>
-
-        {card.description && (
-          <p className={css.description}>{card.description}</p>
-        )}
-
-        <hr className={css.divider} />
+        {card.description && <p className={css.description}>{card.description}</p>}
 
         <div className={css.footer}>
-          {/* Priority */}
           <div className={css.metaCol}>
             <span className={css.metaLabel}>Priority</span>
             <span className={css.priorityLabel}>
-              <span
-                className={css.priorityDot}
-                style={{ backgroundColor: priorityColor }}
-              />
+              <span className={css.priorityDot} style={{ backgroundColor: priorityColor }} />
               {PRIORITY_LABELS[card.priority] || "Without priority"}
             </span>
           </div>
 
-          {/* Deadline */}
           {formattedDeadline && (
             <div className={css.metaCol}>
               <span className={css.metaLabel}>Deadline</span>
               <span className={css.dateRow}>
                 {formattedDeadline}
-                {isDeadlineToday && (
-                  <svg className={css.bellIcon} aria-label="Deadline is today">
-                    <use href="/task-pro/images/icons.svg#icon-bell-dark" />
-                  </svg>
-                )}
+                {isDeadlineToday && <Icon name='icon-bell' className={css.bellIcon} />}
               </span>
             </div>
           )}
 
-          {/* Action buttons */}
           <div className={css.actions} ref={moveRef}>
-            {/* Move */}
             {moveTargets.length > 0 && (
               <button
-                type="button"
+                type='button'
                 className={css.iconButton}
                 onClick={() => setIsMoveOpen((prev) => !prev)}
-                aria-label="Move card to another column"
-                title="Move card"
+                aria-label='Move card'
               >
-                <svg aria-hidden="true">
-                  <use href="/task-pro/images/icons.svg#icon-arrow-circle-dark" />
-                </svg>
+                <Icon name='icon-move' />
               </button>
             )}
-
-            {/* Edit */}
+            <button type='button' className={css.iconButton} onClick={() => setIsEditOpen(true)} aria-label='Edit card'>
+              <Icon name='icon-edit' />
+            </button>
             <button
-              type="button"
+              type='button'
               className={css.iconButton}
-              onClick={() => setIsEditOpen(true)}
-              aria-label="Edit card"
-              title="Edit card"
+              onClick={() => setIsDeleteOpen(true)}
+              aria-label='Delete card'
             >
-              <svg aria-hidden="true">
-                <use href="/task-pro/images/icons.svg#icon-pencil-dark" />
-              </svg>
+              <Icon name='icon-trash' />
             </button>
 
-            {/* Delete */}
-            <button
-              type="button"
-              className={css.iconButton}
-              onClick={handleDelete}
-              aria-label="Delete card"
-              title="Delete card"
-            >
-              <svg aria-hidden="true">
-                <use href="/task-pro/images/icons.svg#icon-trash-dark" />
-              </svg>
-            </button>
-
-            {/* Move popover menu */}
             {isMoveOpen && (
-              <ul className={css.moveMenu} role="menu">
-                {moveTargets.map((col) => (
-                  <li key={col._id}>
+              <ul className={css.moveMenu} role='menu'>
+                {moveTargets.map((column) => (
+                  <li key={column._id}>
                     <button
-                      type="button"
+                      type='button'
                       className={css.moveMenuItem}
-                      onClick={() => handleMove(col._id)}
-                      role="menuitem"
+                      onClick={() => handleMove(column._id)}
+                      role='menuitem'
                     >
-                      {col.title}
+                      {column.title}
                       <span className={css.moveMenuIcon}>
-                        <svg aria-hidden="true">
-                          <use href="/task-pro/images/icons.svg#icon-arrow-circle-dark" />
-                        </svg>
+                        <Icon name='icon-arrow-right' />
                       </span>
                     </button>
                   </li>
@@ -187,13 +152,27 @@ const Card = ({ card, columnId }) => {
         </div>
       </article>
 
-      {/* Edit Card Modal */}
-      <CardModal
-        isOpen={isEditOpen}
-        onClose={() => setIsEditOpen(false)}
-        columnId={columnId}
-        card={card}
-      />
+      <CardModal isOpen={isEditOpen} onClose={() => setIsEditOpen(false)} columnId={columnId} card={card} />
+
+      <Modal isOpen={isDeleteOpen} onClose={() => setIsDeleteOpen(false)}>
+        <div className={css.deleteConfirm}>
+          <h3>Delete card?</h3>
+
+          <p>
+            Are you sure you want to delete <strong>“{card.title}”</strong>? This action cannot be undone.
+          </p>
+
+          <div className={css.deleteActions}>
+            <button type='button' className={css.cancelDelete} onClick={() => setIsDeleteOpen(false)}>
+              No, keep it
+            </button>
+
+            <button type='button' className={css.confirmDelete} onClick={handleDelete}>
+              Yes, delete
+            </button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };

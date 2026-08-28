@@ -15,6 +15,11 @@
   padding: 0 8px 24px;
   font-size: 18px;
   font-weight: 700;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
 }
 
 .logoIcon {
@@ -240,4 +245,56 @@
 .footerButton svg {
   width: 18px;
   height: 18px;
+}
+
+.deleteConfirm {
+  width: 100%;
+  max-width: 420px;
+  padding: 24px;
+}
+
+.deleteConfirm h3 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--modal-text-primary);
+}
+
+.deleteConfirm p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 14px;
+  color: var(--modal-text-secondary);
+}
+
+.deleteConfirm strong {
+  color: var(--modal-text-primary);
+}
+
+.deleteActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.cancelDelete,
+.confirmDelete {
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cancelDelete {
+  background: transparent;
+  color: var(--modal-text-primary);
+}
+
+.confirmDelete {
+  border-color: transparent;
+  background-color: var(--accent);
+  color: #fff;
 }

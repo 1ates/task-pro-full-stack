@@ -1,11 +1,17 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../redux/auth/selectors.js";
+import { selectIsLoggedIn, selectIsRefreshing } from "../redux/auth/selectors.js";
 
 const RestrictedRoute = ({ component: Component, redirectTo = "/home" }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const location = useLocation();
 
-  return isLoggedIn ? <Navigate to={redirectTo} /> : Component;
+  if (isRefreshing) {
+    return null;
+  }
+
+  return isLoggedIn ? <Navigate to={redirectTo} state={{ from: location }} replace /> : Component;
 };
 
 export default RestrictedRoute;

@@ -9,46 +9,54 @@
   right: 0;
   z-index: 20;
   width: 300px;
-  padding: 24px;
+  padding: 16px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
   background-color: var(--bg-modal);
   box-shadow: var(--shadow-card);
 }
 
+.panel :global(.react-datepicker) {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.panel :global(.react-datepicker__month-container) {
+  width: 100%;
+}
+
+.panel :global(.react-datepicker__header) {
+  background-color: transparent;
+}
+
 .header {
   display: flex;
-  aria-expanded: false;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .title {
   margin: 0;
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .closeButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
-  color: var(--text-primary);
-  opacity: 0.8;
-  border: none;
-  background: none;
-  transition: opacity 0.2s ease;
+  width: 24px;
+  height: 24px;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  transition: color 0.2s ease;
 }
 
 .closeButton:hover {
-  opacity: 1;
+  color: var(--accent);
 }
 
 .closeButton svg {
@@ -60,104 +68,52 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
+}
+
+.options + .subHeader {
+  margin-top: 16px;
 }
 
 .subTitle {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
 .showAll {
   font-size: 12px;
-  font-weight: 400;
-  color: var(--text-muted);
-  text-decoration: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.showAll:hover {
   color: var(--accent);
-}
-
-.bgGrid {
-  display: grid;
-  grid-template-columns: repeat(8, 28px);
-  gap: 4px;
-  margin-bottom: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.bgSwatch {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  border: none;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  padding: 0;
-  transition: transform 0.2s ease, outline 0.2s ease;
-}
-
-.bgSwatch:hover {
-  transform: scale(1.08);
-}
-
-.bgSwatchActive {
-  outline: 2px solid var(--accent);
-  outline-offset: 1px;
-}
-
-.bgSwatchNone {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--bg-body);
-  color: var(--text-muted);
-}
-
-.bgSwatchNone svg {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
+  text-decoration: underline;
 }
 
 .options {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .option {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   width: 100%;
-  padding: 0;
-  border: none;
-  background: none;
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--text-muted);
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--text-secondary);
   text-align: left;
-  cursor: pointer;
-  transition: color 0.2s ease;
 }
 
 .option:hover {
-  color: var(--text-primary);
+  background-color: var(--bg-secondary);
 }
 
 .optionActive {
   color: var(--text-primary);
+  font-weight: 500;
 }
 
 .radio {
@@ -168,15 +124,33 @@
   height: 14px;
   flex-shrink: 0;
   border-radius: 50%;
-  border: 1px solid transparent;
+  border: 1px solid var(--border-color);
 }
 
 .radioDot {
-  width: 14px;
-  height: 14px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
+  background-color: transparent;
 }
 
 .optionActive .radio {
-  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+:global(.react-datepicker__day--in-range),
+:global(.react-datepicker__day--in-selecting-range) {
+  background-color: rgba(190, 219, 176, 0.25) !important;
+  color: var(--text-primary) !important;
+  border-radius: 50%;
+}
+
+:global(.react-datepicker__day--range-start),
+:global(.react-datepicker__day--range-end),
+:global(.react-datepicker__day--selecting-range-start),
+:global(.react-datepicker__day--selecting-range-end) {
+  background-color: var(--accent) !important;
+  color: #161616 !important;
+  font-weight: 600;
 }

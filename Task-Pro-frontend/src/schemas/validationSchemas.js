@@ -14,7 +14,7 @@ export const passwordSchema = yup
   .string()
   .min(8, "Password must be at least 8 characters")
   .max(64, "Password must be at most 64 characters")
-  .matches(passwordRegexp, "Password must not contain spaces")
+  .matches(passwordRegexp, "Password may contain only letters, numbers and symbols, no spaces")
   .required("Password is required");
 
 export const nameSchema = yup
@@ -40,4 +40,16 @@ export const profileSchema = yup.object({
   name: nameSchema,
   email: emailSchema,
   password: passwordSchema.notRequired().transform((value) => value || undefined),
+});
+
+export const forgotPasswordSchema = yup.object({
+  email: emailSchema,
+});
+
+export const resetPasswordSchema = yup.object({
+  password: passwordSchema,
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "Passwords must match")
+    .required("Please confirm your password"),
 });

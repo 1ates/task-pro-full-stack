@@ -84,3 +84,20 @@
   opacity: 0.7;
   cursor: not-allowed;
 }
+
+.formLinks {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -4px;
+}
+
+.link {
+  color: var(--accent);
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.link:hover {
+  color: var(--accent-hover);
+}

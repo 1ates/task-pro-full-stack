@@ -7,7 +7,6 @@ const initialState = {
   error: null,
 };
 
-// ─── Helper: pending / rejected handlers ───
 const handlePending = (state) => {
   state.isLoading = true;
   state.error = null;
@@ -22,18 +21,15 @@ const columnsSlice = createSlice({
   name: "columns",
   initialState,
   reducers: {
-    // Bulk-set columns when a board is fetched (called from boardsSlice)
     setColumns(state, action) {
       state.items = action.payload;
     },
-    // Clear columns on board switch / logout
     clearColumns(state) {
       state.items = [];
       state.error = null;
     },
   },
   extraReducers: (builder) => {
-    // ── addColumn ──
     builder
       .addCase(addColumn.pending, handlePending)
       .addCase(addColumn.fulfilled, (state, action) => {
@@ -41,8 +37,6 @@ const columnsSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(addColumn.rejected, handleRejected);
-
-    // ── editColumn ──
     builder
       .addCase(editColumn.pending, handlePending)
       .addCase(editColumn.fulfilled, (state, action) => {
@@ -54,8 +48,6 @@ const columnsSlice = createSlice({
         }
       })
       .addCase(editColumn.rejected, handleRejected);
-
-    // ── deleteColumn ──
     builder
       .addCase(deleteColumn.pending, handlePending)
       .addCase(deleteColumn.fulfilled, (state, action) => {

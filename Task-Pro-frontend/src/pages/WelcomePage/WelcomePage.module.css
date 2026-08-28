@@ -1,26 +1,12 @@
-/* ============================================================
-   WelcomePage — Responsive CSS Module
-   Breakpoints: Mobile 320px+ | Tablet 768px+ | Desktop 1440px+
-   ============================================================ */
-
-/* ---- Page container ---- */
 .page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #fafafa 30%,
-    #ecefec 60%,
-    #bedbb0 100%
-  );
-  overflow: hidden;
+  padding: 24px;
+  background: linear-gradient(180deg, #f3f4f6 0%, #ffffff 40%, #c7e4ba 100%);
 }
 
-/* ---- Content wrapper ---- */
 .content {
   display: flex;
   flex-direction: column;
@@ -28,7 +14,7 @@
   text-align: center;
   gap: 24px;
   width: 100%;
-  max-width: 335px;
+  max-width: 360px;
   animation: fadeInUp 0.7s ease-out both;
 }
 
@@ -43,7 +29,6 @@
   }
 }
 
-/* ---- Hero illustration ---- */
 .picture {
   display: flex;
   align-items: center;
@@ -52,8 +37,12 @@
 }
 
 .illustration {
-  width: 124px;
-  height: 124px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
+  margin-bottom: 8px;
   object-fit: contain;
   filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.05));
   transition: transform 0.4s ease;
@@ -63,14 +52,18 @@
   transform: scale(1.05);
 }
 
-/* ---- Logo ---- */
+.illustrationIcon {
+  width: 96px;
+  height: 96px;
+  color: #161616;
+}
+
 .logo {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin: 0;
+  gap: 10px;
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.04em;
   color: #161616;
 }
@@ -88,6 +81,11 @@
   flex-shrink: 0;
 }
 
+.logoIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
 .logoLightning {
   position: absolute;
   top: 50%;
@@ -96,7 +94,6 @@
   color: #ffffff;
 }
 
-/* ---- Subtitle ---- */
 .subtitle {
   margin: 0;
   font-size: 14px;
@@ -106,7 +103,6 @@
   max-width: 335px;
 }
 
-/* ---- Action buttons ---- */
 .actions {
   display: flex;
   flex-direction: column;
@@ -115,7 +111,6 @@
   width: 100%;
 }
 
-/* Primary CTA — Registration */
 .primary {
   display: flex;
   align-items: center;
@@ -129,7 +124,9 @@
   font-size: 14px;
   letter-spacing: -0.02em;
   text-align: center;
-  transition: background-color 0.25s ease, transform 0.2s ease;
+  transition:
+    background-color 0.25s ease,
+    transform 0.2s ease;
 }
 
 .primary:hover {
@@ -140,7 +137,6 @@
   transform: scale(0.98);
 }
 
-/* Secondary CTA — Log In */
 .secondary {
   display: inline-flex;
   align-items: center;
@@ -157,6 +153,7 @@
 }
 
 .secondary:hover {
+  color: #161616;
   opacity: 0.7;
 }
 
@@ -164,9 +161,6 @@
   opacity: 0.9;
 }
 
-/* ============================================================
-   Tablet — 768px+
-   ============================================================ */
 @media screen and (min-width: 768px) {
   .page {
     padding: 48px 32px;
@@ -212,9 +206,6 @@
   }
 }
 
-/* ============================================================
-   Desktop — 1440px+
-   ============================================================ */
 @media screen and (min-width: 1440px) {
   .page {
     padding: 64px 48px;

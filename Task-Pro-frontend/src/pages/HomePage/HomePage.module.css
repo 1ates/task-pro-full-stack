@@ -31,17 +31,24 @@
   flex-direction: column;
   flex: 1;
   min-width: 0;
+  min-height: 0;
+  overflow: hidden;
   background-color: var(--bg-main);
 }
 
 .main {
   display: flex;
   flex: 1;
+  min-width: 0;
   min-height: 0;
+  overflow: hidden;
 }
 
 .placeholder {
+  max-width: 600px;
+  min-height: 72px;
   margin: auto;
+  text-align: center;
   color: var(--text-muted);
 }
 

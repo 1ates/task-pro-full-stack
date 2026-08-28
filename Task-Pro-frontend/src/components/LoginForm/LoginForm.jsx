@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import clsx from "clsx";
 import { loginSchema } from "../../schemas/validationSchemas.js";
@@ -27,7 +27,7 @@ const LoginForm = () => {
   const onSubmit = async (values) => {
     const result = await dispatch(login(values));
     if (login.fulfilled.match(result)) {
-      navigate("/home");
+      navigate("/home", { replace: true });
     } else {
       toast.error(result.payload || "Login failed");
     }
@@ -39,6 +39,7 @@ const LoginForm = () => {
         <input
           type='email'
           placeholder='Email'
+          autoComplete='email'
           className={clsx(css.input, errors.email && css.inputError)}
           {...register("email")}
         />
@@ -47,8 +48,14 @@ const LoginForm = () => {
 
       <PasswordField register={register} name='password' error={errors.password} placeholder='Password' />
 
+      <div className={css.formLinks}>
+        <Link to='/auth/forgot-password' className={css.link}>
+          Forgot password?
+        </Link>
+      </div>
+
       <button type='submit' className={css.submit} disabled={isLoading}>
-        Log In
+        {isLoading ? "Logging in..." : "Log In"}
       </button>
     </form>
   );

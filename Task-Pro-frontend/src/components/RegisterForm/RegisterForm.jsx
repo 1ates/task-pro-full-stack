@@ -10,7 +10,7 @@ import { selectAuthLoading } from "../../redux/auth/selectors.js";
 import { PasswordField } from "../PasswordField/PasswordField.jsx";
 import css from "../Public.module.css";
 
-export const RegisterForm = () => {
+const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLoading = useSelector(selectAuthLoading);
@@ -41,6 +41,7 @@ export const RegisterForm = () => {
           placeholder='Name'
           className={clsx(css.input, errors.name && css.inputError)}
           {...register("name")}
+          autoComplete='name'
         />
         {errors.name && <span className={css.error}>{errors.name.message}</span>}
       </div>
@@ -51,6 +52,7 @@ export const RegisterForm = () => {
           placeholder='Email'
           className={clsx(css.input, errors.email && css.inputError)}
           {...register("email")}
+          autoComplete='email'
         />
         {errors.email && <span className={css.error}>{errors.email.message}</span>}
       </div>
