@@ -8,17 +8,14 @@ const WelcomePage = () => {
       <div className={css.content}>
         <picture className={css.picture}>
           <source
-            srcSet='/task-pro/images/welcome-desktop.png 1x, /task-pro/images/welcome-desktop@2x.png 2x'
+            srcSet='/images/welcome-desktop.png 1x, /images/welcome-desktop@2x.png 2x'
             media='(min-width: 1440px)'
           />
-          <source
-            srcSet='/task-pro/images/welcome-tablet.png 1x, /task-pro/images/welcome-tablet@2x.png 2x'
-            media='(min-width: 768px)'
-          />
+          <source srcSet='/images/welcome-tablet.png 1x, /images/welcome-tablet@2x.png 2x' media='(min-width: 768px)' />
           <img
             className={css.illustration}
-            srcSet='/task-pro/images/welcome-mobile.png 1x, /task-pro/images/welcome-mobile@2x.png 2x'
-            src='/task-pro/images/welcome-desktop.png'
+            srcSet='/images/welcome-mobile.png 1x, /images/welcome-mobile@2x.png 2x'
+            src='/images/welcome-desktop.png'
             alt='Task Pro collaborative workspace illustration'
             width={124}
             height={124}
