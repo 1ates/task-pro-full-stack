@@ -22,7 +22,7 @@ export const getBackgroundUrls = (bgName) => {
   const fileName = getBackgroundFileName(bgName, viewportType, isRetina);
 
   return {
-    selected: `/task-pro/images/background/${viewportType}/${fileName}`,
+    selected: `/images/background/${viewportType}/${fileName}`,
     viewportType,
     isRetina,
   };
